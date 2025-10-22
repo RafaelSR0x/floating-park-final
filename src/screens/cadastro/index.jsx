@@ -9,9 +9,9 @@ import {
     LoginText,
     Form,
 } from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 import React, { useState } from 'react';
 import PrimaryButton from '../../assets/components/PrimaryButton';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { registerUser } from '../../api/api';
 import { Alert } from 'react-native';
@@ -48,7 +48,7 @@ export default function Cadastro() {
             <Title>Cadastre-se</Title>
             <Form>
                 <InputWrapper>
-                    <Icon name="user" size={20} color="#fff" />
+                    <MaterialIcons name="person" size={20} color="#fff" />
                     <StyledInput
                         placeholder="Nome de usuário"
                         keyboardType="email-address"
@@ -59,7 +59,7 @@ export default function Cadastro() {
                     />
                 </InputWrapper>
                 <InputWrapper>
-                    <Icon name="mail" size={20} color="#fff" />
+                    <MaterialIcons name="email" size={20} color="#fff" />
                     <StyledInput
                         placeholder="Digite seu e-mail"
                         keyboardType="email-address"
@@ -70,7 +70,7 @@ export default function Cadastro() {
                     />
                 </InputWrapper>
                 <InputWrapper>
-                    <Icon name="lock" size={20} color="#fff" />
+                    <MaterialIcons name="lock" size={20} color="#fff" />
                     <StyledInput
                         placeholder="Digite sua senha"
                         secureTextEntry={!showPassword}
@@ -79,11 +79,11 @@ export default function Cadastro() {
                         onChangeText={setPassword}
                     />
                     <ToggleButton onPress={() => setShowPassword(!showPassword)}>
-                        <Icon name={showPassword ? 'eye-off' : 'eye'} size={20} color="#fff" />
+                        <MaterialIcons name={showPassword ? 'visibility-off' : 'visibility'} size={20} color="#fff" />
                     </ToggleButton>
                 </InputWrapper>
                 <InputWrapper>
-                    <Icon name="lock" size={20} color="#fff" />
+                    <MaterialIcons name="lock" size={20} color="#fff" />
                     <StyledInput
                         placeholder="Confirmar senha"
                         secureTextEntry={!showConfirmPassword}
@@ -92,7 +92,11 @@ export default function Cadastro() {
                         onChangeText={setConfirmPassword}
                     />
                     <ToggleButton onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
-                        <Icon name={showConfirmPassword ? 'eye-off' : 'eye'} size={20} color="#fff" />
+                        <MaterialIcons
+                            name={showConfirmPassword ? 'visibility-off' : 'visibility'}
+                            size={20}
+                            color="#fff"
+                        />
                     </ToggleButton>
                 </InputWrapper>
             </Form>
