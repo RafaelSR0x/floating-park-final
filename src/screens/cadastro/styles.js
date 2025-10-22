@@ -46,3 +46,13 @@ export const StyledInput = styled.TextInput`
 export const ToggleButton = styled.TouchableOpacity`
     padding: 4px;
 `;
+
+export const LoginButton = styled.TouchableOpacity`
+    margin-top: 10px;
+`;
+
+export const LoginText = styled.Text`
+    color: #fff;
+    font-size: 16px;
+    font-family: PoppinsRegular;
+`;

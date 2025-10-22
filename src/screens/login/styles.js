@@ -41,3 +41,14 @@ export const StyledInput = styled.TextInput`
 export const ToggleButton = styled.TouchableOpacity`
     padding: 4px;
 `;
+
+export const RegisterText = styled.Text`
+    color: #fff;
+    font-family: PoppinsRegular;
+    font-size: 16px;
+    margin-top: 16px;
+`;
+
+export const RegisterButton = styled.TouchableOpacity`
+    margin-top: 8px;
+`;

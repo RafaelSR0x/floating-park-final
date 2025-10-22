@@ -33,7 +33,7 @@ const SmallText = styled.Text`
     font-size: 14px;
 `;
 
-export default function Card() {
+export default function Card({ placa = 'ABC-1234', dataEntrada = '', horarioEntrada = '' }) {
     return (
         <ContainerCard>
             <CardBox
@@ -46,9 +46,9 @@ export default function Card() {
                     style={{ width: 48, height: 48 }}
                 />
                 <ContentCard>
-                    <TextPlaca>Placa: ABC-1234</TextPlaca>
-                    <SmallText>Data de entrada: </SmallText>
-                    <SmallText>Hora: </SmallText>
+                    <TextPlaca>Placa: {placa}</TextPlaca>
+                    <SmallText>Data de entrada: {dataEntrada}</SmallText>
+                    <SmallText>Hora: {horarioEntrada}</SmallText>
                 </ContentCard>
             </CardBox>
         </ContainerCard>

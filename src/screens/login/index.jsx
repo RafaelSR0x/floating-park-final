@@ -1,9 +1,19 @@
-import { LoginContainer, Image, Title, InputWrapper, StyledInput, ToggleButton } from './styles';
+import {
+    LoginContainer,
+    Image,
+    Title,
+    InputWrapper,
+    StyledInput,
+    ToggleButton,
+    RegisterText,
+    RegisterButton,
+} from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import React, { useState } from 'react';
 import PrimaryButton from '../../assets/components/PrimaryButton';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import api, { loginUser } from '../../api/api';
+import * as SecureStore from 'expo-secure-store';
 import { Alert } from 'react-native';
 
 export default function Login() {
@@ -19,25 +29,19 @@ export default function Login() {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-
-            if (!response.ok) {
+            const { data } = await loginUser({ email, senha: password }); // backend espera 'senha', não 'password'
+            if (!data || !data.token) {
                 throw new Error('Usuário ou senha inválidos');
             }
 
-            const data = await response.json();
-            console.log('Login bem-sucedido:', data);
+            // Salva token no SecureStore para que o interceptor do api.js envie nas requisições
+            await SecureStore.setItemAsync('userToken', data.token);
 
-            //Alert.alert('Sucesso', 'Login realizado com sucesso!');
+            console.log('Login bem-sucedido');
             navigation.navigate('BottomTabs');
         } catch (error) {
-            Alert.alert('Erro', error.message);
+            const message = error.response?.data?.message || error.message || 'Erro no login';
+            Alert.alert('Erro', message);
         }
     }
 
@@ -73,6 +77,10 @@ export default function Login() {
             </InputWrapper>
 
             <PrimaryButton title="Login" onPress={handleLogin} />
+
+            <RegisterButton onPress={() => navigation.navigate('Cadastro')}>
+                <RegisterText>Não tem uma conta? Cadastre-se</RegisterText>
+            </RegisterButton>
         </LoginContainer>
     );
 }

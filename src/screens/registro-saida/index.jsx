@@ -4,6 +4,7 @@ import AppModal from '../../assets/components/ModalSuccess';
 import { View, Text, ScrollView } from 'react-native';
 import { Container, Card, InfoText, InfoTitleText } from './styles';
 import PrimaryButton from '../../assets/components/PrimaryButton';
+import { liberateExit, getVehicleHistoryByPlate } from '../../api/api';
 import React, { useState } from 'react';
 
 export default function RegistroSaida({ route, navigation }) {
@@ -12,6 +13,15 @@ export default function RegistroSaida({ route, navigation }) {
 
     const handleBack = () => {
         navigation.navigate('Saida');
+    };
+
+    const handleFinalizar = async () => {
+        try {
+            await liberateExit(placa);
+            setModalVisible(true);
+        } catch (err) {
+            console.warn('Erro ao finalizar saída:', err.response?.data || err.message || err);
+        }
     };
 
     return (
@@ -31,7 +41,7 @@ export default function RegistroSaida({ route, navigation }) {
                 <InfoText>Valor a pagar: R$ 600,00</InfoText>
             </Card>
 
-            <PrimaryButton title="Finalizar" onPress={() => setModalVisible(true)} />
+            <PrimaryButton title="Finalizar" onPress={handleFinalizar} />
 
             <AppModal
                 visible={modalVisible}

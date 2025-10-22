@@ -5,13 +5,16 @@ import {
     StyledInput,
     Title,
     ToggleButton,
-    handleRegister,
+    LoginButton,
+    LoginText,
     Form,
 } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import React, { useState } from 'react';
 import PrimaryButton from '../../assets/components/PrimaryButton';
 import { useNavigation } from '@react-navigation/native';
+import { registerUser } from '../../api/api';
+import { Alert } from 'react-native';
 
 export default function Cadastro() {
     const [name, setName] = useState('');
@@ -23,8 +26,20 @@ export default function Cadastro() {
 
     const navigation = useNavigation();
 
-    const handleRegister = () => {
-        navigation.navigate('BottomTabs');
+    const handleRegister = async () => {
+        if (!name || !email || !password || password !== confirmPassword) {
+            Alert.alert('Erro', 'Preencha corretamente os campos e verifique as senhas');
+            return;
+        }
+
+        try {
+            await registerUser({ nome: name, email, senha: password });
+            Alert.alert('Sucesso', 'Usuário registrado com sucesso');
+            navigation.navigate('Login');
+        } catch (err) {
+            const message = err.response?.data || err.message || 'Erro ao registrar';
+            Alert.alert('Erro', message);
+        }
     };
 
     return (
@@ -82,6 +97,10 @@ export default function Cadastro() {
                 </InputWrapper>
             </Form>
             <PrimaryButton title="Cadastrar" onPress={handleRegister} />
+
+            <LoginButton onPress={() => navigation.navigate('Login')}>
+                <LoginText>Já tem uma conta? Faça login</LoginText>
+            </LoginButton>
         </CadastroContainer>
     );
 }
