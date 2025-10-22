@@ -1,10 +1,7 @@
-// src/api/api.js
-
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-// ATENÇÃO: SUBSTITUA 'SEU_IP_LOCAL' pelo IP da sua máquina onde o Spring Boot está rodando
-const API_URL = 'http://SEU_IP_LOCAL:8080';
+const API_URL = 'http://localhost:8080';
 
 const api = axios.create({
     baseURL: API_URL,
@@ -13,7 +10,6 @@ const api = axios.create({
     },
 });
 
-// Interceptor para adicionar o token de autenticação a todas as requisições
 api.interceptors.request.use(
     async (config) => {
         const publicRoutes = ['/auth/login', '/auth/register'];
@@ -31,8 +27,6 @@ api.interceptors.request.use(
     }
 );
 
-// --- Funções de API ---
-
 // Autenticação
 export const registerUser = async (data) => api.post('/auth/register', data);
 export const loginUser = async (data) => api.post('/auth/login', data);
@@ -48,4 +42,4 @@ export const getVehicleHistoryByPlate = (placa) => api.get(`/api/veiculos/placa/
 export const liberateEntrance = (placa) => api.post('/api/veiculos/entrada', { placa });
 export const liberateExit = (placa) => api.put('/api/veiculos/saida', { placa });
 
-export default api; // Exporta a instância do Axios
+export default api;
