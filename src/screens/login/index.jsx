@@ -8,10 +8,10 @@ import {
     RegisterText,
     RegisterButton,
 } from './styles';
-import Icon from 'react-native-vector-icons/Feather';
 import React, { useState } from 'react';
 import PrimaryButton from '../../assets/components/PrimaryButton';
 import { useNavigation } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
 import api, { loginUser } from '../../api/api';
 import * as SecureStore from 'expo-secure-store';
 import { Alert } from 'react-native';
@@ -51,7 +51,7 @@ export default function Login() {
             <Title>Acesse Sua Conta</Title>
 
             <InputWrapper>
-                <Icon name="mail" size={20} color="#fff" />
+                <MaterialIcons name="email" size={20} color="#fff" />
                 <StyledInput
                     placeholder="Digite seu e-mail"
                     keyboardType="email-address"
@@ -63,7 +63,7 @@ export default function Login() {
             </InputWrapper>
 
             <InputWrapper>
-                <Icon name="lock" size={20} color="#fff" />
+                <MaterialIcons name="lock" size={20} color="#fff" />
                 <StyledInput
                     placeholder="Digite sua senha"
                     secureTextEntry={!showPassword}
@@ -72,7 +72,7 @@ export default function Login() {
                     onChangeText={setPassword}
                 />
                 <ToggleButton onPress={() => setShowPassword(!showPassword)}>
-                    <Icon name={showPassword ? 'eye-off' : 'eye'} size={20} color="#fff" />
+                    <MaterialIcons name={showPassword ? 'visibility-off' : 'visibility'} size={20} color="#fff" />
                 </ToggleButton>
             </InputWrapper>
 
