@@ -15,6 +15,8 @@ export default function Home() {
             async function load() {
                 try {
                     const { data } = await getActiveVehicles();
+                    console.log('Dados dos veículos:', data);
+                    console.log('Exemplo de veículo:', data[0]); // Log para debug
                     setVeiculos(data || []);
                 } catch (err) {
                     console.warn('Erro ao buscar veículos:', err.message || err);
@@ -36,7 +38,12 @@ export default function Home() {
             >
                 {veiculos.length > 0 ? (
                     veiculos.map((v) => (
-                        <Card key={v.id} placa={v.placa} dataEntrada={v.dataEntrada} horarioEntrada={v.horaEntrada} />
+                        <Card
+                            key={v.id}
+                            placa={v.placa}
+                            dataEntrada={v.dataEntrada}
+                            horarioEntrada={v.horarioEntrada}
+                        />
                     ))
                 ) : (
                     <Text
