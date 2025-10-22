@@ -4,9 +4,11 @@
     "slug": "floating-park-final",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,11 +17,16 @@
     },
     "android": {
       "adaptiveIcon": {
+        "foregroundImage": "",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
-    }
+      "favicon": ""
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
