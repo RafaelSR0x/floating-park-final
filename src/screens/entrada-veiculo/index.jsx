@@ -46,7 +46,7 @@ export default function Entrada() {
     return (
         <ContainerSaida>
             <Header title="Entrada" />
-            <Image source={require('../../assets/images/logo-floating-park.png')} style={{ width: 213, height: 190 }} />
+            <Image source={require('../../assets/images/logo-floating-park.png')} style={{ width: 189, height: 169 }} />
 
             <Title>Registrar entrada de veículo</Title>
 
@@ -65,7 +65,6 @@ export default function Entrada() {
                 visible={modalVisible}
                 onClose={() => {
                     setModalVisible(false);
-                    // Atualiza a lista de veículos na tela Home
                     navigation.navigate('Home');
                 }}
                 message="Veículo cadastrado com sucesso!"
