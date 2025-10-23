@@ -5,18 +5,21 @@ export const ContainerSaida = styled.View`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    /* gap: 50px; */
     background-color: #5b37b7;
     border: 0px;
 `;
 
-export const Image = styled.Image``;
+export const Image = styled.Image`
+    margin-top: 30px;
+`;
 
 export const Title = styled.Text`
     font-family: PoppinsSemiBold;
     font-size: 24px;
     color: #fff;
     text-align: center;
+    margin-top: 50px;
 `;
 
 export const InputWrapper = styled.View`
@@ -29,6 +32,7 @@ export const InputWrapper = styled.View`
     align-items: center;
     padding: 0 12px;
     margin-bottom: 15px;
+    margin-top: 50px;
 `;
 
 export const StyledInput = styled.TextInput`
