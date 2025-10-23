@@ -37,9 +37,9 @@ export default function Home() {
                 showsVerticalScrollIndicator={false}
             >
                 {veiculos.length > 0 ? (
-                    veiculos.map((v) => (
+                    veiculos.map((v, index) => (
                         <Card
-                            key={v.id}
+                            key={v.id || `veiculo-${index}`}
                             placa={v.placa}
                             dataEntrada={v.dataEntrada}
                             horarioEntrada={v.horarioEntrada}
