@@ -97,17 +97,33 @@ yarn install
 
 ### 3. Configure a API
 
-O aplicativo está configurado para se conectar ao backend em:
-
-```
-https://parkingapisenai.azurewebsites.net
-```
-
-Se necessário, você pode alterar a URL base da API em `src/api/api.js`:
+O aplicativo requer conexão com uma API backend. Configure a URL da API editando o arquivo `src/api/api.js`:
 
 ```javascript
-const API_URL = 'https://parkingapisenai.azurewebsites.net';
+const API_URL = 'SUA_URL_DA_API_AQUI';
 ```
+
+**Nota:** A URL da API não está incluída neste repositório por questões de segurança.
+
+#### Requisitos da API Backend
+
+A API deve implementar os seguintes endpoints:
+
+**Autenticação:**
+
+-   `POST /auth/register` - Cadastro de usuário
+-   `POST /auth/login` - Login de usuário (retorna token JWT)
+-   `GET /auth/me` - Dados do usuário autenticado
+
+**Veículos:**
+
+-   `GET /api/veiculos` - Listar veículos ativos
+-   `GET /api/veiculos/id/{id}` - Buscar veículo por ID
+-   `GET /api/veiculos/placa/{placa}` - Buscar histórico por placa
+-   `POST /api/veiculos/entrada` - Registrar entrada de veículo
+-   `PUT /api/veiculos/saida` - Registrar saída de veículo
+
+A API deve suportar autenticação JWT via header `Authorization: Bearer <token>`.
 
 ### 4. Inicie o aplicativo
 
@@ -170,7 +186,6 @@ O aplicativo utiliza autenticação JWT (JSON Web Token):
 
 ### 1. Login e Cadastro
 
--   Autenticação segura com JWT
 -   Validação de campos
 -   Armazenamento seguro de credenciais
 
@@ -186,7 +201,7 @@ O aplicativo utiliza autenticação JWT (JSON Web Token):
 -   Exibição de informações de entrada
 -   Cálculo automático de:
     -   Tempo de permanência
-    -   Valor a pagar (R$ 5,00 por hora)
+    -   Valor a pagar (R$ 10,00 por hora)
 -   Confirmação com modal
 
 ### 4. Visualização de Veículos
@@ -194,24 +209,6 @@ O aplicativo utiliza autenticação JWT (JSON Web Token):
 -   Lista de todos os veículos ativos
 -   Exibição de placa, data e hora de entrada
 -   Atualização automática ao adicionar/remover veículos
-
-## 🔌 API Endpoints
-
-O aplicativo consome os seguintes endpoints:
-
-### Autenticação
-
--   `POST /auth/register` - Cadastro de usuário
--   `POST /auth/login` - Login de usuário
--   `GET /auth/me` - Dados do usuário logado
-
-### Veículos
-
--   `GET /api/veiculos` - Listar veículos ativos
--   `GET /api/veiculos/id/{id}` - Buscar veículo por ID
--   `GET /api/veiculos/placa/{placa}` - Buscar histórico por placa
--   `POST /api/veiculos/entrada` - Registrar entrada
--   `PUT /api/veiculos/saida` - Registrar saída
 
 ## 🎨 Paleta de Cores
 
@@ -229,9 +226,9 @@ O aplicativo está configurado para o fuso horário de Brasília (UTC-3). Os hor
 
 ### Regras de Cobrança
 
--   Valor da hora: R$ 5,00
+-   Valor configurável por hora
 -   Frações de hora são arredondadas para cima
--   Exemplo: 1h 15min = 2 horas = R$ 10,00
+-   Exemplo: 1h 15min = 2 horas
 
 ### Validação de Placas
 
@@ -252,15 +249,6 @@ O aplicativo aceita dois formatos de placa:
 
 -   Limpe o cache: `expo start -c`
 -   Reinstale as dependências: `npm install`
-
-### Token expirado
-
--   Faça logout e login novamente
--   O token é renovado automaticamente no login
-
-## 📱 Screenshots
-
-_(Adicione screenshots do seu aplicativo aqui)_
 
 ## 👥 Contribuindo
 
